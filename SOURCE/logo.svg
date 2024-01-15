@@ -1,55 +1,13 @@
-<svg
-  xmlns="http://www.w3.org/2000/svg"
-  width="209"
-  height="54"
-  viewBox="0 0 209 54"
->
-  <defs>
-    <style>
-      .cls-1 {
-        fill: #2584ff;
-        stroke: #2584ff;
-      }
-
-      .cls-1,
-      .cls-2 {
-        stroke-linecap: round;
-        stroke-linejoin: round;
-        stroke-width: 10px;
-        fill-rule: evenodd;
-      }
-
-      .cls-2 {
-        fill: #ff3400;
-        stroke: #ff3400;
-        mix-blend-mode: lighten;
-      }
-
-      .cls-3 {
-        font-size: 32.498px;
-        fill: #fff;
-        font-family: Inter;
-        font-weight: 700;
-      }
-    </style>
-  </defs>
-  <path
-    id="Polygon_1_copy_2"
-    data-name="Polygon 1 copy 2"
-    class="cls-1"
-    d="M43.851,29.7L24.244,39.2,32.037,14.02Z"
-  />
-  <path
-    id="Polygon_1_copy_2-2"
-    data-name="Polygon 1 copy 2"
-    class="cls-2"
-    d="M37.033,29.7L56.64,39.2,48.847,14.02Z"
-  />
-  <text
-    id="Moshify"
-    class="cls-3"
-    transform="translate(71.466 35.437) scale(0.923)"
-  >
-    Tobi
-  </text>
+<svg width="394" height="134" viewBox="0 0 394 134" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g opacity="0.82">
+<path d="M111 30C100 30 57 30 46 30C35 30 38 51 46 51C54 51 68 51 68 51H89.5C89.5 51 100 51 111 51C122 51 122 30 111 30Z" fill="#F83E3E"/>
+<path d="M68 51C68 51 68 76 68 88C68 100 89.5 99 90 88C90.5 77 89.5 51 89.5 51H68Z" fill="#F83E3E"/>
+<path d="M68 51C68 51 54 51 46 51C38 51 35 30 46 30C57 30 100 30 111 30C122 30 122 51 111 51C100 51 89.5 51 89.5 51M68 51C68 51 68 76 68 88C68 100 89.5 99 90 88C90.5 77 89.5 51 89.5 51M68 51H89.5" stroke="#F83E3E"/>
+</g>
+<ellipse cx="167" cy="63.5" rx="39" ry="33.5" fill="#65CAD8"/>
+<g opacity="0.82">
+<path d="M224 30V98H267.506C294.4 98 295.191 63.4035 267.506 63.4035C296.773 63.4035 292.818 30 267.506 30H224Z" fill="#F83E3E"/>
+<path d="M224 30V98M224 30C224 30 242.193 30 267.506 30M224 30H267.506M224 98C224 98 240.611 98 267.506 98M224 98H267.506M267.506 98C294.4 98 295.191 63.4035 267.506 63.4035M267.506 63.4035H243.775M267.506 63.4035C296.773 63.4035 292.818 30 267.506 30" stroke="#F04444"/>
+</g>
+<path d="M306 39.9561C306 53.2309 306 79.7805 306 92.1071C306 104.434 334 103.485 334 92.1071C334 80.7287 334 53.2309 334 39.9561C334 26.6813 306 26.6813 306 39.9561Z" fill="#65CAD8" stroke="#65CAD8"/>
 </svg>

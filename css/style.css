@@ -108,6 +108,13 @@ nav img{
     font-size: xxx-large;
 }
 
+.width_dec{
+    margin-left: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 ul.nav-t{
     margin-right: 0rem;
 }
@@ -148,6 +155,7 @@ ul.nav-t{
 
 .nav_a{
     transition: all 1.5s ease;
+    height: 61px;
 }
 
 
@@ -161,6 +169,7 @@ ul.nav-t{
         font-weight: 600;
     }
     .handBurger{
+        width: 100px;
         display: flex;
         align-items: center;
         justify-content: center;
