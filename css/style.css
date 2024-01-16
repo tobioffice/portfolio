@@ -74,6 +74,7 @@ nav ul li a:hover:after{
 }
 
 .main-body-1{
+    position: relative;
     overflow-x: hidden;
     height: 88vh;
     background: url('../SOURCE/home-bg.png');
@@ -104,6 +105,8 @@ nav ul li a:hover:after{
     font-size: xxx-large;
 }
 
+
+
 .width_dec{
     margin-left: 3rem;
     display: flex;
@@ -116,21 +119,20 @@ ul.nav-t{
 }
 
 .explr-btn {
-    width: 115px;
-    transition: all 0.5s ease;
-    padding: 10px 10px;
-    outline: none;
-    margin: 25px 0;
-    justify-content: left;
-    height: 44px;
-    font-weight: 500;
-    font-size: medium;
-    display: flex;
-    color: #fff;
-    border: 1px solid rgb(52, 52, 208);
-    border-radius: 8px;
     background-color: rgb(37, 132, 255);
-    align-items: center;
+    border-radius: 8px;
+    border: none;
+    color: #fff;
+    display: flex;
+    font-size: medium;
+    font-weight: 500;
+    height: 2.5rem;
+    justify-content: left;
+    margin: 25px 0;
+    outline: none;
+    padding: 10px 10px;
+    transition: all 0.5s ease;
+    width: 8rem;
 }
 
 
@@ -146,73 +148,65 @@ ul.nav-t{
 
 .handBurger{
     display: none;
-    transition: all 1.5s ease;
+    cursor: pointer;
 }
 
 .nav_a{
     height: 61px;
 }
 
+.mobile_menu_container{
+    height: 50vh;
+    position: absolute;
+    top: 1px;
+    right: 3px;
+    width: 300px;
+    display: flex;
+    justify-content: flex-end;
+    /* transform: translateY(-100%); */
+    transition: ease-out 1s;
+    overflow: hidden;
+    z-index: 9;
+    display: none;
+
+}
+
+.mobile_menu{
+    background-color: rgb(19, 14, 14);
+    padding: 5px;
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.li_mobile{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: black;
+    padding: 10px;
+    height: 50px;
+    border-bottom:1px dashed rgb(194, 190, 190, 0.5) ;
+}
+
+.li_mobile a,.li_mobile p{
+    color: #fff;
+}
 
 @media screen and (max-width: 675px){
-    ul .li{
-        height: 10vh;
-    }
-
-    .font-six{
-        font-size: larger;
-        font-weight: 600;
-    }
-    .handBurger{
-        width: 100px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    
-    }
-
-    .menu_icon{
-        height: 2.5rem;
-        width: 100%;
-        cursor: pointer;
-    }
-
-
-    
-    ul.nav-t{
-        height: 90vh;
-        width: 100%;
-        position: absolute;
-        left: -100%;
-        flex-direction: column;
-        top: 10vh;
-        align-items: center;
-        background-color: #141313;
-        display: flex;
-        transition: all 0.5s ease;
-    }
-
-    ul.nav-t_open{
-        height: 90vh;
-        width: 100%;
-        left: 0%;
-        position: absolute;
-        flex-direction: column;
-        top: 10vh;
-        justify-content: flex-start;
-        align-items: center;
-        background-color: #141313;
-        display: flex;
-    }
-
-    ul.nav-t li{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        margin: 8vh 0;
-        padding: 10px 0;
-    }
+  .handBurger{
+    display: flex;
+    margin-right: 1rem;
+  }
+  .hide{
+    display: none;
+  }
+  .nav-t{
+    display: none;
+  }
+  .unhide{
+    display: flex;
+  }
 }
 
 #main-body-2{
@@ -337,10 +331,3 @@ h3{
 
   }
 
-
-
-@media screen and (min-height: 600px){
-    ul.nav-t {
-        display: flex;
-    }
-}
