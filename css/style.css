@@ -73,10 +73,6 @@ nav ul li a:hover:after{
    width: 100%;
 }
 
-nav img{
-    margin: 0 3rem;
-}
-
 .main-body-1{
     overflow-x: hidden;
     height: 88vh;
