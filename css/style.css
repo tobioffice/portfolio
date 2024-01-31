@@ -18,7 +18,7 @@ a{
 
 .nav-div{
     background-color: #141313;
-    height: 12vh;
+    height: 10vh;
 }
 
 em{
@@ -40,29 +40,52 @@ nav ul li{
 }
 
 nav ul li a{
+    padding: 12px;
+    border: 1px solid rgb(194, 194, 194);
+    border-radius: 22px;
     height: 2rem;
+    width: 6rem;
     display: flex;
     align-items: center;
     justify-content: center;
     text-decoration: none;
     color: rgb(234 231 231);
     font-size: 18px;
-    position: relative;
+    transition: all 0.2s ease-in;
 }
 
-nav ul li a::after{
+.a_class{
+    position: relative;
+    width: 6rem;
+    border-radius: 22px;
+    overflow: hidden; 
+    z-index: 0;
+}
+
+.a_class::after{
     content: '';
-    background: #ff004f;
-    height: 3px;
-    width: 0;
+    color: red;
+    background: #f8f3f5;
+    height: 31px;
+    width: 100%;
     position: absolute;
     left: 0;
-    bottom: -6px;
-    transition: 0.3s ease;
+    bottom: -31px;
+    border-radius: 22px;
+    transition: 0.3s ease-in-out;
+
+}
+
+.a_class:hover::after{
+    bottom: 0;
+}
+
+.a_text{
+    z-index: 9;
 }
 
 nav ul li a:hover{
-    color: white;
+    color: rgb(7, 7, 7);
 }
 
 nav ul li a.active{
@@ -73,10 +96,10 @@ nav ul li a:hover:after{
    width: 100%;
 }
 
-.main-body-1{
+#main-body-1{
     position: relative;
     overflow-x: hidden;
-    height: 88vh;
+    height: 90vh;
     background: url('../SOURCE/home-bg.png');
     background-color: #fff;
     background-repeat: no-repeat;
@@ -105,7 +128,14 @@ nav ul li a:hover:after{
     font-size: xxx-large;
 }
 
+.li_mobile{
+    cursor: pointer;
+    border-radius: 2px;
+}
 
+.li_mobile:hover{
+    background: #1e1e1e;
+}
 
 .width_dec{
     margin-left: 3rem;
@@ -149,10 +179,22 @@ ul.nav-t{
 .handBurger{
     display: none;
     cursor: pointer;
+    border: 1px solid #fff;
+    border-radius: 20px;
+    width: 3rem;
+    padding: 2px;
 }
 
+.menu_icon{
+    height: 25px;
+    width: 25px;
+    color: #000000;
+}
+
+
+
 .nav_a{
-    height: 61px;
+    height: 50px;
 }
 
 .mobile_menu_container{
@@ -163,12 +205,15 @@ ul.nav-t{
     width: 300px;
     display: flex;
     justify-content: flex-end;
-    /* transform: translateY(-100%); */
     transition: ease-out 1s;
     overflow: hidden;
     z-index: 9;
-    display: none;
 
+}
+
+.hide{
+    transition: all 0.5s ease;
+    display: none;
 }
 
 .mobile_menu{
@@ -193,13 +238,21 @@ ul.nav-t{
     color: #fff;
 }
 
+.logo_mob {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo_mob .width_dec{
+    margin-left: 0;
+}
+
 @media screen and (max-width: 675px){
   .handBurger{
     display: flex;
+    justify-content: center;
     margin-right: 1rem;
-  }
-  .hide{
-    display: none;
   }
   .nav-t{
     display: none;
@@ -207,6 +260,7 @@ ul.nav-t{
   .unhide{
     display: flex;
   }
+
 }
 
 #main-body-2{
@@ -277,10 +331,48 @@ h3{
     width: inherit;
 }
 
+#main-body-2{
+    height: 100vh;
+    background-color: #0D1224;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 50% 50%;
+    padding: 0 8rem;
+}
+
+.txt_element_button{
+    height: 1.5rem;
+    width: 3rem;
+    border: 1px solid blue;
+    border-radius: 14px;
+    padding: 4px;
+    background-color: red;
+    display: inline-block;
+    margin-top: 2rem;
+}
+
+.body_2_img_element img, .text_child{
+    border-radius: 10px;
+    object-fit: cover;
+    height: 16rem;
+    width: 28rem;
+    overflow: hidden;
+}
+
+.body_2_text_element h2{
+    font-size: 2rem;
+    color: white;
+    margin-bottom: 2rem;
+}
+
+.body_2_text_element p{
+    font-size: 1rem;
+    color: white;
+}
 
 @media screen and (max-width: 1025px){
     
-    .main-body-1{
+    #main-body-1{
         background-position: -1px 99%;
     }
     
@@ -310,7 +402,7 @@ h3{
 }
 
 @media screen and (max-height: 600px) {
-    .main-body-1{
+    #main-body-1{
         background-position: -1px 25%;
     }
 
@@ -330,4 +422,3 @@ h3{
     }
 
   }
-
