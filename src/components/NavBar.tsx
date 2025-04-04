@@ -1,42 +1,75 @@
-import { useState } from "react";
 import { CiMenuFries } from "react-icons/ci";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 
+interface NavBarProps {
+    links: Array<{
+        name: string;
+        link: string;
+    }>;
+    toggleMenu: () => void;
+    isOpen: boolean;
+}
 
-const NavBar = () => {
-    const [isOpen, setIsOpen] = useState(false);
-
-    const toggleMenu = () => {
-        setIsOpen(!isOpen);
-    };
+const NavBar = ({ links, toggleMenu, isOpen }: NavBarProps) => {
 
     return (
-        <div className="flex justify-between items-center p-4 relative h-[10vh]">
-            <div>
-                <h1 className="text-2xl font-bold">My App</h1>
+        <div className="navbar bg-gradient-to-r from-amber-100 to-amber-200 md:rounded-lg shadow-md h-[10vh] px-4 md:px-15 overflow-auto relative z-50 flex items-center justify-between">
+            <div >
+                <h1 className="text-3xl font-bold bg-gradient-to-r from-amber-600 to-amber-800 bg-clip-text text-transparent font-['Underdog']">
+                    Tobify
+                </h1>
             </div>
-            <div className={`
-                    absolute right-0 top-0 mt-15 mx-5
-                    w-[calc(100%-2.5rem)]
-                    flex flex-col items-center
-                    bg-green-500 text-white
-                    rounded-2xl p-5 gap-2 shadow-lg
-                    transition-all duration-300 ease-in-out
-                    ${isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-5 pointer-events-none'}
-                    md:static md:flex-row
-                    md:bg-transparent md:text-gray-800
-                    md:shadow-none md:p-0 md:m-0
-                    md:gap-0 md:translate-0 md:opacity-100
-                `}>
-                <a href="#" className="hover:bg-green-600 p-4 rounded-lg w-full">Home</a>
-                <a href="#" className="hover:bg-green-600 p-4 rounded-lg w-full">Products</a>
-                <a href="#" className="hover:bg-green-600 p-4 rounded-lg w-full">Blog</a>
-                <a href="#" className="hover:bg-green-600 p-4 rounded-lg w-full">Portfolio</a>
-            </div>
-            <div className="flex">
-                <button className="md:hidden cursor-pointer" onClick={toggleMenu}>
-                    {isOpen ? <IoIosCloseCircleOutline size={25} /> : <CiMenuFries size={25} />}
-                </button>
+            <div >
+                <div className="hidden md:flex">
+                    <ul className="menu menu-horizontal px-1">
+                        {links.map((item, index) => (
+                            <li key={index}>
+                                <a
+                                    href={item.link}
+                                    className="text-amber-800 hover:bg-white/80 text-lg font-medium"
+                                >
+                                    {item.name}
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+                <div className="relative md:hidden">
+                    <button
+                        className="btn btn-ghost border-none text-amber-800 hover:text-amber-600 hover:bg-transparent"
+                        onClick={toggleMenu}
+                        aria-label={isOpen ? "Close menu" : "Open menu"}
+                    >
+                        {isOpen ? <IoIosCloseCircleOutline size={28} /> : <CiMenuFries size={28} />}
+                    </button>
+                    <ul className={`
+                        z-50 mx-5
+                        fixed top-[6vh] right-0
+                        bg-gradient-to-r from-amber-100 to-amber-200
+                        rounded-lg shadow-lg mt-10
+                        p-4 w-[calc(100%-40px)]
+                        transition-all duration-300 ease-in-out
+                        transform origin-top-right
+                        ${isOpen
+                            ? "opacity-100 scale-100"
+                            : "opacity-0 scale-95 pointer-events-none"
+                        }
+                    `}>
+                        {links.map((item, index) => (
+                            <li key={index}>
+                                <a
+                                    href={item.link}
+                                    className="block px-4 py-2 text-amber-800 text-lg font-medium
+                                    hover:bg-white/60 rounded-md transition-colors duration-200
+                                    whitespace-nowrap text-center"
+                                    onClick={() => toggleMenu()}
+                                >
+                                    {item.name}
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
             </div>
         </div>
     );
