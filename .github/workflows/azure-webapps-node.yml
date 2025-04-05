@@ -6,10 +6,7 @@ on:
       - main
   workflow_dispatch:
 
-env:
-  NODE_VERSION: '20.x'
-  PNPM_VERSION: '8.x'    # or pin to a specific patch like '8.15.4'
-
+# Grant the GITHUB_TOKEN permission to write repo contents (needed for git push)
 permissions:
   contents: write
 
@@ -18,28 +15,47 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 1) Checkout with the built-in token
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
+      # 2) Setup Node.js & pnpm
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ env.NODE_VERSION }}
-
+          node-version: '20.x'
       - name: Set up pnpm
         uses: pnpm/action-setup@v2
         with:
-          version: ${{ env.PNPM_VERSION }}
+          version: '8.x'
 
+      # 3) Install & build
       - name: Install dependencies
         run: pnpm install
-
       - name: Build project
         run: pnpm run build
 
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: dist            # ← change this if your build output folder is named differently
-          branch: gh-pages
-          token: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+      # 4) Deploy: push `dist/` to gh-pages
+      - name: Deploy to gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Configure Git user
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # Create orphan branch and commit the build output
+          git worktree add output dist
+          cd output
+          git checkout --orphan gh-pages
+
+          # Commit and push
+          git add --all
+          git commit -m "Deploy to gh-pages: ${{ github.sha }}"
+          git push --force "https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git" HEAD:gh-pages
+
+          # Cleanup
+          cd ..
+          git worktree remove output
