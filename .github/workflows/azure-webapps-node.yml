@@ -2,7 +2,8 @@ name: Deploy Portfolio to GitHub Pages
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
   workflow_dispatch:
 
 env:
@@ -13,8 +14,9 @@ permissions:
   contents: write
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -29,47 +31,15 @@ jobs:
         with:
           version: ${{ env.PNPM_VERSION }}
 
-      - name: Get pnpm store directory
-        id: pnpm-cache
-        run: echo "store-path=$(pnpm store path)" >> $GITHUB_OUTPUT
-
-      - name: Cache pnpm dependencies
-        uses: actions/cache@v4
-        with:
-          path: ${{ steps.pnpm-cache.outputs.store-path }}
-          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-
-
       - name: Install dependencies
         run: pnpm install
 
       - name: Build project
         run: pnpm run build
 
-      - name: Upload build artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: portfolio-dist
-          path: dist
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-
-    steps:
-      - name: Download build artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: portfolio-dist
-
       - name: Deploy to GitHub Pages
-        id: deployment
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: dist
+          folder: dist            # ← change this if your build output folder is named differently
           branch: gh-pages
           token: ${{ secrets.ACTIONS_DEPLOY_KEY }}
