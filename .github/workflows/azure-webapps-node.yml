@@ -6,7 +6,6 @@ on:
       - main
   workflow_dispatch:
 
-# Grant the GITHUB_TOKEN permission to write repo contents (needed for git push)
 permissions:
   contents: write
 
@@ -15,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1) Checkout with the built-in token
+      # 1) Checkout with write permissions
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
@@ -37,7 +36,15 @@ jobs:
       - name: Build project
         run: pnpm run build
 
-      # 4) Deploy: push `dist/` to gh-pages
+      # 4) Verify dist directory exists
+      - name: Verify dist directory
+        run: |
+          if [ ! -d "dist" ]; then
+            echo "❌ Error: dist directory does not exist."
+            exit 1
+          fi
+
+      # 5) Deploy to gh-pages via worktree
       - name: Deploy to gh-pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -46,7 +53,7 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          # Create orphan branch and commit the build output
+          # Create an orphan gh-pages branch in a new worktree
           git worktree add output dist
           cd output
           git checkout --orphan gh-pages
@@ -56,6 +63,6 @@ jobs:
           git commit -m "Deploy to gh-pages: ${{ github.sha }}"
           git push --force "https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git" HEAD:gh-pages
 
-          # Cleanup
+          # Cleanup worktree
           cd ..
           git worktree remove output
