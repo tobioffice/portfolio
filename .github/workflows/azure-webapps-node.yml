@@ -7,7 +7,7 @@ on:
 
 env:
   NODE_VERSION: '20.x'
-  PNPM_VERSION: '8.15.4'  # Use exact version for stability
+  PNPM_VERSION: '8.15.4'  # You can change this to the version you're using
 
 permissions:
   contents: write
