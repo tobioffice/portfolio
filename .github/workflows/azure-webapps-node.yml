@@ -7,7 +7,7 @@ on:
 
 env:
   NODE_VERSION: '20.x'
-  PNPM_VERSION: '8.15.4'  # You can change this to the version you're using
+  PNPM_VERSION: '8.x'    # or pin to a specific patch like '8.15.4'
 
 permissions:
   contents: write
@@ -23,10 +23,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'pnpm'
 
-      - name: Install pnpm
-        run: npm install -g pnpm@${{ env.PNPM_VERSION }}
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
 
       - name: Get pnpm store directory
         id: pnpm-cache
@@ -46,7 +47,7 @@ jobs:
       - name: Build project
         run: pnpm run build
 
-      - name: Upload artifact
+      - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
           name: portfolio-dist
@@ -60,7 +61,7 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-      - name: Download artifact
+      - name: Download build artifact
         uses: actions/download-artifact@v4
         with:
           name: portfolio-dist
