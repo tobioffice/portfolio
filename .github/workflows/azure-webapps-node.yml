@@ -1,0 +1,81 @@
+name: Deploy Portfolio to GitHub Pages
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+env:
+  NODE_VERSION: '20.x'                # Updated from 16 to current LTS
+  PNPM_VERSION: '8.x'                 # Added for consistency
+
+permissions:
+  contents: write                     # Needed for GitHub Pages deployment
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4      # Updated from v3 to v4
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4    # Updated from v3 to v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'pnpm'               # Using pnpm instead of npm
+
+      - name: Set up PNPM
+        uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+          run_install: false
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - name: Cache pnpm dependencies
+        uses: actions/cache@v4         # Updated from v3 to v4
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build project
+        run: pnpm run build
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: portfolio-dist
+          path: dist                   # Your build output folder
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: portfolio-dist
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: dist                 # Your build output folder
+          branch: gh-pages             # The branch GitHub Pages uses
+          token: ${{ secrets.GITHUB_TOKEN }}  # Using default GITHUB_TOKEN instead of custom one
