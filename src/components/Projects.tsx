@@ -169,7 +169,7 @@ const Projects = () => {
                                     <h3 className="text-xl font-bold text-amber-800 mb-1">NbkristWeb</h3>
                                     <div className="flex gap-3">
                                         <a
-                                            href="#"
+                                            href="https://tobioffice.dev"
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className="inline-flex items-center gap-1 text-blue-500 hover:text-blue-600 text-sm"
