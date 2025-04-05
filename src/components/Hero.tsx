@@ -1,5 +1,5 @@
 import image from "../assets/music-player.jpg";
-import MuraliResume from "../../public/MuraliResume.pdf"
+import MuraliResume from "../assets/MuraliResume.pdf"
 import { FaGithub, FaProjectDiagram, FaEnvelope, FaFileDownload } from "react-icons/fa";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";

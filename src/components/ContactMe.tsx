@@ -58,10 +58,22 @@ const ContactMe = () => {
         setSubmitStatus('idle');
 
         try {
-            // Simulate API call
-            await new Promise(resolve => setTimeout(resolve, 1000));
-            setSubmitStatus('success');
-            setFormData({ name: '', email: '', message: '' });
+            const formElement = e.target as HTMLFormElement;
+            const formData = new FormData(formElement);
+
+            const response = await fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                body: formData
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                setSubmitStatus('success');
+                setFormData({ name: '', email: '', message: '' });
+            } else {
+                throw new Error('Form submission failed');
+            }
         } catch (error) {
             setSubmitStatus('error');
         } finally {
@@ -82,7 +94,15 @@ const ContactMe = () => {
                     <p className="text-amber-700">Have a question or want to work together? Send me a message!</p>
                 </div>
 
-                <form ref={formRef} onSubmit={handleSubmit} className="space-y-6 bg-white p-8 rounded-xl shadow-lg">
+                <form
+                    ref={formRef}
+                    onSubmit={handleSubmit}
+                    action="https://api.web3forms.com/submit"
+                    method="POST"
+                    className="space-y-6 bg-white p-8 rounded-xl shadow-lg"
+                >
+                    <input type="hidden" name="access_key" value="b3f2107e-4d41-41b4-bf5c-503d68ffcf19" />
+                    <input type="checkbox" name="botcheck" style={{ display: 'none' }} />
                     <div>
                         <label htmlFor="name" className="block text-sm font-medium text-amber-700">
                             Name
