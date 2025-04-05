@@ -69,7 +69,7 @@ const Hero = ({ isOpen }: { isOpen: boolean }) => {
     }, []);
 
     return (
-        <div className="relative min-h-[90vh] px-6 py-12 bg-gradient-to-r from-amber-100 to-amber-200 md:px-20 md:rounded-2xl overflow-hidden w-full flex items-center justify-center">
+        <div className="relative min-h-[90vh] px-6 py-12 bg-gradient-to-r from-amber-100 to-amber-200 md:px-20 overflow-hidden w-full flex items-center justify-center">
             <div className={`z-49 fixed h-full w-full backdrop-blur-sm ${isOpen ? "block" : "hidden"}`}></div>
             <div className="flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto gap-12 w-full">
                 <div className="flex flex-col space-y-6 text-center md:text-left md:w-1/2">
