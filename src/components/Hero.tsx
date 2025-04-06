@@ -1,4 +1,4 @@
-import image from "../assets/music-player.jpg";
+import image from "../assets/portfolioimage.png";
 import MuraliResume from "../assets/MuraliResume.pdf"
 import { FaGithub, FaProjectDiagram, FaEnvelope, FaFileDownload } from "react-icons/fa";
 import { useEffect, useRef } from "react";
