@@ -108,7 +108,7 @@ const Hero = ({ isOpen }: { isOpen: boolean }) => {
                     <img
                         src={image}
                         alt="Murali - Web Developer"
-                        className="relative w-72 h-72 md:w-[500px] md:h-[500px] object-cover mix-blend-darken"
+                        className="relative w-72 h-72 md:w-[500px] md:h-[500px] object-cover mix-blend-normal"
                     />
                 </div>
             </div>
