@@ -101,7 +101,7 @@ const Projects = () => {
                                             <span>Try Bot</span>
                                         </a>
                                         <a
-                                            href="#"
+                                            href="https://github.com/tobioffice/NbkristQik"
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className="inline-flex items-center gap-1 text-gray-700 hover:text-gray-900 text-sm"
