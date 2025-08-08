@@ -104,7 +104,7 @@ const Hero = ({ isOpen }: { isOpen: boolean }) => {
                     </div>
                 </div>
                 <div className="relative w-full md:w-1/2 flex justify-center items-center mt-8 md:mt-0">
-                    <div className="absolute -inset-4 bg-amber-300/30 blur-2xl rounded-full"></div>
+                    <div className="absolute -inset-4 bg-gradient-to-r from-red-200 via-amber-100 to-blue-200 blur-3xl rounded-full animate-pulse"></div>
                     <img
                         src={image}
                         alt="Murali - Web Developer"
