@@ -1,0 +1,11 @@
+{
+  "file_scan_exclusions": [
+    "**/.git",
+    "**/node_modules",
+    "tsconfig.app.json",
+    "tsconfig.node.json",
+    "**/.vscode",
+    "**/.github",
+    "**/.zed"
+  ]
+}

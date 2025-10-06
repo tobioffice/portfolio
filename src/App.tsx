@@ -1,23 +1,12 @@
-import NavBar from "./components/NavBar"
-import Hero from "./components/Hero"
+import NavBar from "./components/NavBar";
+import Hero from "./components/Hero";
 import ContactMe from "./components/ContactMe";
 import Projects from "./components/Projects";
-import { useState } from "react";
-
+import { Links } from "./constants/links";
+import { useMenuToggle } from "./hooks/useMenuToggle";
 
 function App() {
-
-  const Links = [
-    { name: "Home", link: "#" },
-    { name: "projects", link: "#projects" },
-    { name: "Contact", link: "#contact" },
-  ];
-
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
+  const { isOpen, toggleMenu } = useMenuToggle();
 
   return (
     <>
@@ -33,4 +22,4 @@ function App() {
   );
 }
 
-export default App
+export default App;
